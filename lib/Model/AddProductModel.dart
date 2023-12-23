@@ -1,0 +1,63 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
+class Add_Product {
+  String title;
+  String description;
+  
+  String brand;
+
+  Add_Product({
+    required this.title,
+    required this.description,
+    required this.brand,
+  });
+
+  Add_Product copyWith({
+    String? title,
+    String? description,
+    String? brand,
+  }) {
+    return Add_Product(
+      title: title ?? this.title,
+      description: description ?? this.description,
+      brand: brand ?? this.brand,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'title': title,
+      'description': description,
+      'brand': brand,
+    };
+  }
+
+  factory Add_Product.fromMap(Map<String, dynamic> map) {
+    return Add_Product(
+      title: map['title'] as String,
+      description: map['description'] as String,
+      brand: map['brand'] as String,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Add_Product.fromJson(String source) => Add_Product.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() => 'Add_Product(title: $title, description: $description, brand: $brand)';
+
+  @override
+  bool operator ==(covariant Add_Product other) {
+    if (identical(this, other)) return true;
+  
+    return 
+      other.title == title &&
+      other.description == description &&
+      other.brand == brand;
+  }
+
+  @override
+  int get hashCode => title.hashCode ^ description.hashCode ^ brand.hashCode;
+}
